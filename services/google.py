@@ -14,3 +14,9 @@ class Google(Service):
         else:
             return jdata['short_url']
 
+    def qrcode(self, url):
+        if not url.startswith('http://goo.gl/'):
+            url = self.shrink(url)
+        qrdata = request(url + '.qr').read()
+        return qrdata
+
